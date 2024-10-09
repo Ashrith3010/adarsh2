@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Waste Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="food-listings.html">Food Listings</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="cart-link" style="display: none;"><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                <li id="login-link"><a href="login.html">Login</a></li>
+                <li id="logout-link" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Welcome to Food Waste Management</h1>
+            <p>Saving food from going to waste, making meals accessible and affordable!</p>
+            <a href="about.html" class="cta-button">Learn More</a>
+        </div>
+    </section>
+
+    <script>
+        // Check if user is logged in
+        if (localStorage.getItem('loggedIn') === 'true') {
+            document.getElementById('cart-link').style.display = 'block';
+            document.getElementById('logout-link').style.display = 'block';
+            document.getElementById('login-link').style.display = 'none';
+            document.getElementById('cart-count').innerText = JSON.parse(localStorage.getItem('cart'))?.length || 0;
+        } else {
+            document.getElementById('cart-link').style.display = 'none';
+            document.getElementById('logout-link').style.display = 'none';
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('username');
+            localStorage.removeItem('cart');
+            window.location.reload();
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Food Waste Management</p>
+    </footer>
+</body>
+</html>

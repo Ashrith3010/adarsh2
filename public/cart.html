@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <ul id="cart-items"></ul>
+    <button id="purchase-button">Purchase</button>
+
+    <script>
+        const username = localStorage.getItem('username') || 'anotheruser';  // Ensure username is available
+
+        if (!username) {
+            alert('Please login to view your cart');
+            window.location.href = 'login.html';
+        }
+
+        fetch(`/cart/${username}`)  // Fetch using the correct username
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Check if the cart exists for the user
+                const cartItems = data || [];
+                const cartList = document.getElementById('cart-items');
+                
+                if (cartItems.length === 0) {
+                    cartList.innerHTML = '<li>Your cart is empty</li>';
+                } else {
+                    cartItems.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item;
+                        cartList.appendChild(li);
+                    });
+                }
+            })
+            .catch(error => console.error('Error fetching cart items:', error));
+
+            document.getElementById('purchase-button').addEventListener('click', function() {
+    const username = localStorage.getItem('username');  // Ensure username is obtained correctly
+
+    fetch('/purchase', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username })
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            alert('Purchase successful! Cart has been cleared.');
+            window.location.href = 'cart.html';  // Reload cart page
+        }
+    })
+    .catch(error => console.error('Error processing purchase:', error));
+});
+
+    </script>
+</body>
+</html>

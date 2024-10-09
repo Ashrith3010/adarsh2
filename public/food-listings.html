@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Food</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="food-listings.html">Food Listings</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li id="cart-link" style="display: none;"><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+
+    <section class="food-list">
+        <h1>Available Food Items</h1>
+        <div class="food-item" data-name="Vegetable Curry" data-price="120">
+            <h2>Vegetable Curry</h2>
+            <p>₹120</p>
+            <button onclick="addToCart('Vegetable Curry', 120)">Add to Cart</button>
+        </div>
+        <div class="food-item" data-name="Chicken Biryani" data-price="150">
+            <h2>Chicken Biryani</h2>
+            <p>₹150</p>
+            <button onclick="addToCart('Chicken Biryani', 150)">Add to Cart</button>
+        </div>
+        <div class="food-item" data-name="Paneer Butter Masala" data-price="130">
+            <h2>Paneer Butter Masala</h2>
+            <p>₹130</p>
+            <button onclick="addToCart('Paneer Butter Masala', 130)">Add to Cart</button>
+        </div>
+    </section>
+
+    <script>
+        const cartCountElement = document.getElementById('cart-count');
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        cartCountElement.innerText = cart.length;
+
+        function addToCart(name, price) {
+            cart.push(name);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            cartCountElement.innerText = cart.length;
+            alert(name + ' has been added to your cart!');
+        }
+
+        // Display cart link if logged in
+        if (localStorage.getItem('loggedIn') === 'true') {
+            document.getElementById('cart-link').style.display = 'block';
+            cartCountElement.innerText = cart.length;
+        }
+    </script>
+</body>
+</html>

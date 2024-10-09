@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <button type="submit">Login</button>
+    </form>
+    <p id="error-message" style="color: red; display: none;">Invalid credentials</p>
+
+    <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        fetch('http://localhost:3000/users') // Use the correct URL
+            .then(response => {
+                if (!response.ok) {
+                    // Log the error response if the fetch fails
+                    console.error('Fetch error:', response.status, response.statusText);
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(users => {
+                const user = users.find(user => user.username === username && user.password === password);
+                if (user) {
+                    localStorage.setItem('loggedIn', 'true');
+                    localStorage.setItem('username', username);
+                    window.location.href = 'index.html'; // Redirect to index.html
+                } else {
+                    document.getElementById('error-message').style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                document.getElementById('error-message').style.display = 'block';
+            });
+    });
+</script>
+
+</body>
+</html>
