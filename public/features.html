@@ -3,28 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Features</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Features - Food Waste Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #4CAF50;
+            padding: 15px 0;
+        }
+
+        #nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        #nav-list li {
+            margin: 0 20px;
+        }
+
+        #nav-list a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        #nav-list a:hover {
+            color: #e0e0e0;
+        }
+
+        .process-section {
+            padding: 120px 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #4CAF50;
+            border-radius: 2px;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .process-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #4CAF50;
+        }
+
+        .process-card h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .process-card p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .stats-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .process-section {
+                padding: 80px 20px;
+            }
+
+            .section-header h1 {
+                font-size: 2rem;
+            }
+
+            .process-card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="food-listings.html">Food Listings</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <section class="content">
-        <h1>Our Process</h1>
-        <ul>
-            <li>We partner with function halls to collect surplus food.</li>
-            <li>We purchase this food at a nominal cost to avoid waste.</li>
-            <li>We distribute the food through street vendors and special hotels at low prices.</li>
-            <li>Our process helps prevent food waste and provides affordable meals to people in need.</li>
-        </ul>
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Our Process</h1>
+                <p>How we make a difference in food waste management</p>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="icon">🤝</div>
+                    <h3>Partnership</h3>
+                    <p>We establish strong partnerships with function halls and event venues to collect surplus food that would otherwise go to waste.</p>
+                </div>
+
+                <div class="process-card">
+                    <div class="icon">💰</div>
+                    <h3>Fair Pricing</h3>
+                    <p>We purchase surplus food at nominal costs, making it a win-win situation for both venues and consumers.</p>
+                </div>
+
+                <div class="process-card">
+                    <div class="icon">🚚</div>
+                    <h3>Distribution</h3>
+                    <p>We distribute quality food through a network of street vendors and special hotels at affordable prices.</p>
+                </div>
+
+                <div class="process-card">
+                    <div class="icon">♻️</div>
+                    <h3>Sustainability</h3>
+                    <p>Our process helps reduce food waste while providing affordable, quality meals to those in need.</p>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Meals Saved Daily</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Partner Venues</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Distribution Points</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="header.js"></script>
 </body>
 </html>

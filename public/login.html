@@ -3,49 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - Food Waste Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 20px;
+            display: flex;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .login-section {
+            flex: 1;
+            padding: 60px 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #error-message {
+            color: #ff6b6b;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .switch-form {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+        }
+
+        .switch-form a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .switch-form a:hover {
+            color: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                margin: 20px;
+            }
+
+            .image-section {
+                padding: 20px;
+            }
+
+            .login-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Login</h1>
-    <form id="login-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" required>
-        <button type="submit">Login</button>
-    </form>
-    <p id="error-message" style="color: red; display: none;">Invalid credentials</p>
+    <div class="container">
+        <div class="image-section">
+            <img src="/Users/nagashrithjanamanchi/Desktop/Webdeve/adarsh page/adarsh/public/images/12.jpg" alt="Login illustration">
+        </div>
+        <div class="login-section">
+            <h1>Welcome Back</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p id="error-message"></p>
+            <div class="switch-form">
+                <p>Don't have an account? <a href="register.html">Register</a></p>
+            </div>
+        </div>
+    </div>
 
     <script>
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        fetch('http://localhost:3000/users') // Use the correct URL
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            
+            errorMessage.textContent = '';
+            
+            fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password })
+            })
             .then(response => {
                 if (!response.ok) {
-                    // Log the error response if the fetch fails
-                    console.error('Fetch error:', response.status, response.statusText);
-                    throw new Error('Network response was not ok');
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 return response.json();
             })
-            .then(users => {
-                const user = users.find(user => user.username === username && user.password === password);
-                if (user) {
-                    localStorage.setItem('loggedIn', 'true');
+            .then(data => {
+                if (data.success) {
                     localStorage.setItem('username', username);
-                    window.location.href = 'index.html'; // Redirect to index.html
+                    localStorage.setItem('loggedIn', 'true');
+                    window.location.href = 'index.html';
                 } else {
-                    document.getElementById('error-message').style.display = 'block';
+                    errorMessage.textContent = data.message || 'Invalid credentials';
                 }
             })
             .catch(error => {
-                console.error('Fetch error:', error);
-                document.getElementById('error-message').style.display = 'block';
+                console.error('Login error:', error);
+                errorMessage.textContent = 'An error occurred. Please try again.';
             });
-    });
-</script>
-
+        });
+    </script>
 </body>
 </html>

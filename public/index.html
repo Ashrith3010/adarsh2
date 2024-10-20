@@ -4,54 +4,242 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Waste Management</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        nav {
+            background-color: rgba(51, 51, 51, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        nav.scrolled {
+            background-color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 20px 15px;
+            display: block;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        #cart-count {
+            background-color: #ff6347;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .primary-cta {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .secondary-cta {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .features {
+            padding: 80px 20px;
+            background-color: #f5f5f5;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+            }
+            nav ul {
+                flex-wrap: wrap;
+            }
+            nav ul li a {
+                padding: 15px 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="food-listings.html">Food Listings</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li id="cart-link" style="display: none;"><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
-                <li id="login-link"><a href="login.html">Login</a></li>
-                <li id="logout-link" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav>
+        <ul id="nav-list">
+            <!-- Navigation will be populated by header.js -->
+        </ul>
+    </nav>
 
     <section class="hero">
-        <div class="hero-text">
-            <h1>Welcome to Food Waste Management</h1>
-            <p>Saving food from going to waste, making meals accessible and affordable!</p>
-            <a href="about.html" class="cta-button">Learn More</a>
+        <div class="hero-content">
+            <h1>Save Food, Save Lives</h1>
+            <p>Join our initiative to reduce food waste and make quality meals accessible to everyone.</p>
+            <div class="cta-buttons">
+                <a href="food-listings.html" class="cta-button primary-cta">Browse Food</a>
+                <a href="about.html" class="cta-button secondary-cta">Learn More</a>
+            </div>
         </div>
     </section>
 
-    <script>
-        // Check if user is logged in
-        if (localStorage.getItem('loggedIn') === 'true') {
-            document.getElementById('cart-link').style.display = 'block';
-            document.getElementById('logout-link').style.display = 'block';
-            document.getElementById('login-link').style.display = 'none';
-            document.getElementById('cart-count').innerText = JSON.parse(localStorage.getItem('cart'))?.length || 0;
-        } else {
-            document.getElementById('cart-link').style.display = 'none';
-            document.getElementById('logout-link').style.display = 'none';
-        }
-
-        function logout() {
-            localStorage.removeItem('loggedIn');
-            localStorage.removeItem('username');
-            localStorage.removeItem('cart');
-            window.location.reload();
-        }
-    </script>
+    <section class="features">
+        <div class="features-container">
+            <h2>Why Choose Us</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Reduce Food Waste</h3>
+                    <p>We collect surplus food from events and functions that would otherwise go to waste.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Quality Assured</h3>
+                    <p>All food is carefully checked for quality and safety before being made available.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Affordable Meals</h3>
+                    <p>Get access to quality food at very affordable prices, making good meals accessible to everyone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2024 Food Waste Management</p>
+        <p>&copy; 2024 Food Waste Management. All rights reserved.</p>
     </footer>
+
+    <script>
+    // Navbar color change on scroll
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+    </script>
+    <script src="header.js"></script>
 </body>
 </html>

@@ -3,23 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>About Us - Food Waste Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #111312;
+            background: #f5f7fa;
+        }
+
+        .header {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-list a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-list a:hover {
+            color: #4CAF50;
+        }
+
+        .hero-section {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('/images/food-waste.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            margin-top: 80px; /* Adjust for fixed header */
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Additional styles for mission, impact, and team sections (as in your original CSS) */
+        .mission-section {
+            padding: 80px 20px;
+            background: #f5f7fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .mission-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .impact-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .impact-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            background: #f5f7fa;
+            transition: transform 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #0bb424;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="food-listings.html">Food Listings</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Food Waste Management</a>
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="food-listings.html">Food Listings</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </div>
+    </header>
 
-    <section class="content">
-        <h1>About Our Initiative</h1>
-        <p>We all know that a lot of food gets wasted at functions and events. We are here to buy food from function halls that is going to waste for a nominal cost. Later, we will sell this food on the street for a very low price. Since it's function food, it is obviously of good taste and would otherwise go to waste, so they will charge us very little. We plan to sell it on the streets and in special types of hotels.</p>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>About Our Initiative</h1>
+            <p>We're on a mission to reduce food waste and make quality meals accessible to everyone.</p>
+        </div>
     </section>
+
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <h2>Our Mission</h2>
+                    <p>To revolutionize food waste management by creating a sustainable ecosystem that benefits both food providers and consumers while reducing environmental impact.</p>
+                </div>
+                <div class="mission-card">
+                    <h2>Our Vision</h2>
+                    <p>A world where no quality food goes to waste, and everyone has access to affordable, nutritious meals.</p>
+                </div>
+                <div class="mission-card">
+                    <h2>Our Values</h2>
+                    <p>Sustainability, accessibility, and community empowerment drive everything we do.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="impact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Impact</h2>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">🌍</div>
+                    <h3>Environmental Impact</h3>
+                    <p>Reducing food waste helps decrease greenhouse gas emissions and conserves resources.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">👥</div>
+                    <h3>Social Impact</h3>
+                    <p>Making quality food accessible to everyone while supporting local vendors and communities.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">💰</div>
+                    <h3>Economic Impact</h3>
+                    <p>Creating a sustainable business model that benefits all stakeholders in the food supply chain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="header.js"></script>
 </body>
 </html>

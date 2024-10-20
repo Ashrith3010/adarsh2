@@ -1,10 +1,18 @@
 [
   {
-      "username": "testuser",
-      "password": "testpassword"
+    "username": "testuser",
+    "password": "testpassword"
   },
   {
-      "username": "anotheruser",
-      "password": "anotherpassword"
+    "username": "anotheruser",
+    "password": "anotherpassword"
+  },
+  {
+    "username": "adarsh",
+    "password": "123456"
+  },
+  {
+    "username": "ashrith",
+    "password": "123456"
   }
 ]
